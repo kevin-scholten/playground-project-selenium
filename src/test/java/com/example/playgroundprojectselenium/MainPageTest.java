@@ -17,12 +17,14 @@ public class MainPageTest extends Helper {
     @BeforeEach
     public void setUp() {
         try {
-            setupThread("firefox");
+            setupThread("chrome");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         driver = getDriver();
         driver.manage().window().maximize();
+
+        // Maak time-out na 10 seconden..
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://www.jetbrains.com/");
 

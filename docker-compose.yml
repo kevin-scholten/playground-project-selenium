@@ -10,29 +10,6 @@ services:
       - SE_EVENT_BUS_HOST=selenium-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-
-  edge:
-    image: selenium/node-edge:4.1.4-20220427
-    shm_size: 2gb
-    container_name: edge
-    depends_on:
-      - selenium-hub
-    environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-
-  firefox:
-    image: selenium/node-firefox:4.1.4-20220427
-    shm_size: 2gb
-    container_name: firefox
-    depends_on:
-      - selenium-hub
-    environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-
   selenium-hub:
     image: selenium/hub:4.1.4-20220427
     container_name: selenium-hub
@@ -40,15 +17,24 @@ services:
       - "4442:4442"
       - "4443:4443"
       - "4444:4444"
-
-  application:
+  ui-tests:
     build: .
-    container_name: application
+    container_name: ui-tests
     ports:
       - "4447:4447"
     depends_on:
-      - firefox
       - chrome
-      - edge
     volumes:
       - .:/tests
+  database:
+    image: mysql:5.7
+    container_name: database
+    volumes:
+      - ./database:/var/lib/mysql
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: database
+      MYSQL_USER: kevin
+      MYSQL_PASSWORD: rootpass

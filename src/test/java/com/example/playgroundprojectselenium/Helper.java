@@ -17,8 +17,7 @@ public class Helper {
         if(browserName.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             driver.set(new RemoteWebDriver(new URL(remote_url_chrome), options));
-        }
-        else if(browserName.equalsIgnoreCase("firefox")) {
+        } else if(browserName.equalsIgnoreCase("firefox")) {
             FirefoxOptions options = new FirefoxOptions();
             driver.set(new RemoteWebDriver(new URL(remote_url_firefox), options));
         }
