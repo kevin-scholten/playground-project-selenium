@@ -10,8 +10,8 @@ import java.net.URL;
 
 public class Helper {
     protected static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
-    public static String remote_url_chrome = "seleniumhub:4444/wd/hub";
-    public static String remote_url_firefox = "seleniumhub:4444/wd/hub";
+    public static String remote_url_chrome = "http://seleniumhub:4444/wd/hub";
+    public static String remote_url_firefox = "http://seleniumhub:4444/wd/hub";
 
     public void setupThread(String browserName) throws MalformedURLException {
         if(browserName.equalsIgnoreCase("chrome")) {
