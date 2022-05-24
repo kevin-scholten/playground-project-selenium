@@ -5,36 +5,22 @@ services:
     shm_size: 2gb
     container_name: chrome
     depends_on:
-      - selenium-hub
+      - seleniumhub
     environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_HOST=seleniumhub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-  selenium-hub:
-    image: selenium/hub:4.1.4-20220427
-    container_name: selenium-hub
+  seleniumhub:
+    image: selenium/hub
+    container_name: seleniumhub
     ports:
-      - "4442:4442"
-      - "4443:4443"
       - "4444:4444"
-  ui-tests:
+  uitests:
     build: .
-    container_name: ui-tests
+    container_name: uitests
     ports:
       - "4447:4447"
     depends_on:
-      - chrome
+      - seleniumhub
     volumes:
       - .:/tests
-  database:
-    image: mysql:5.7
-    container_name: database
-    volumes:
-      - ./database:/var/lib/mysql
-    ports:
-      - '3306:3306'
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: database
-      MYSQL_USER: kevin
-      MYSQL_PASSWORD: rootpass

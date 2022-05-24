@@ -1,20 +1,22 @@
 package com.example.playgroundprojectselenium;
 
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class MainPageTest extends Helper {
     private WebDriver driver;
     private MainPage mainPage;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         try {
             setupThread("chrome");
@@ -31,7 +33,7 @@ public class MainPageTest extends Helper {
         mainPage = new MainPage(driver);
     }
 
-    @AfterEach
+    @After
     public void tearDown() {
         tearDownDriver();
     }
