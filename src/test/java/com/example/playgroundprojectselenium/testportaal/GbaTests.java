@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.LocalFileDetector;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -40,15 +41,20 @@ public class GbaTests extends Helper {
 
     @Test
     public void uploadBRPClienten() {
-        File f = new File("src/test/resources/ClientenTestset.csv");
-        System.out.println("Resource path: " + f.getAbsolutePath());
-        testPortaalPage.kiesBestandBrpButton.sendKeys(f.getAbsolutePath());
+        // Haal pad van clienten test set op
+        File f = new File(System.getProperty("user.dir") + File.separator + "resources" + File.separator + "ClientenTestset.csv");
+        LocalFileDetector detector = new LocalFileDetector();
+        File f2 = detector.getLocalFile(f.getAbsolutePath());
+        System.out.println("Resource path: " + f2.getAbsolutePath());
+
+        // Selecteer Clienten Test set
+        testPortaalPage.kiesBestandBrpButton.sendKeys(f2.getAbsolutePath());
         testPortaalPage.uploadBrpButton.click();
+
+        // Controleer of popup positief is
         WebElement popup = testPortaalPage.feedbackPanelParagraafTekst;
         assertTrue(popup.isDisplayed());
-
         String tekstInPopup = testPortaalPage.feedbackPanelParagraafTekst.getText();
         assertEquals("Uploaden van file was succesvol", tekstInPopup);
     }
-
 }
