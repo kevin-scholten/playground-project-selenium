@@ -22,5 +22,6 @@ services:
       - "4447:4447"
     depends_on:
       - seleniumhub
+      - chrome
     volumes:
       - .:/tests
