@@ -1,18 +1,17 @@
-package com.example.playgroundprojectselenium;
+package com.example.playgroundprojectselenium.testportaal;
 
+import com.example.playgroundprojectselenium.Helper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
-
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
-public class GbaTesten extends Helper {
+public class GbaTests extends Helper {
     private WebDriver driver;
     private TestPortaalPage testPortaalPage;
 
@@ -31,6 +30,7 @@ public class GbaTesten extends Helper {
         driver.get("https://testit-testportaal.test.landelijkescreening.nl/?1");
 
         testPortaalPage = new TestPortaalPage(driver);
+
     }
 
     @After
@@ -48,6 +48,5 @@ public class GbaTesten extends Helper {
         String tekstInPopup = testPortaalPage.feedbackPanelParagraafTekst.getText();
         assertEquals("Uploaden van file was succesvol", tekstInPopup);
     }
-
 
 }

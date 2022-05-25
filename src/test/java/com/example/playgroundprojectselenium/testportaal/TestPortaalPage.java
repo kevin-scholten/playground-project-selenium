@@ -1,4 +1,4 @@
-package com.example.playgroundprojectselenium;
+package com.example.playgroundprojectselenium.testportaal;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +12,7 @@ public class TestPortaalPage {
     @FindBy(css = "button#gbaPutFile")
     public WebElement uploadBrpButton;
 
-    @FindBy(css = ".feedbackPanelINFO > span > p")
+    @FindBy(css = ".feedbackPanelINFO span p")
     public WebElement feedbackPanelParagraafTekst;
 
     public TestPortaalPage(WebDriver driver) {

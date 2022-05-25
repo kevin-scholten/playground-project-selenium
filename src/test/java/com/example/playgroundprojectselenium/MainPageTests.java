@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class MainPageTest extends Helper {
+public class MainPageTests extends Helper {
     private WebDriver driver;
     private MainPage mainPage;
 

@@ -1,9 +1,13 @@
 package com.example.playgroundprojectselenium;
 
+import com.example.playgroundprojectselenium.testportaal.GbaTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import com.googlecode.junittoolbox.SuiteClasses;
+import com.googlecode.junittoolbox.WildcardPatternSuite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({MainPageTest.class, GbaTesten.class})
+@Suite.SuiteClasses({MainPageTests.class, GbaTests.class})
 public class MainTestSuite {
+
 }
