@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.io.File;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 import static junit.framework.Assert.assertEquals;
@@ -27,12 +29,10 @@ public class GbaTests extends Helper {
 
         // Maak time-out na 10 seconden..
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://testit-testportaal.test.landelijkescreening.nl/?1");
+        driver.get("https://testit-testportaal.test.landelijkescreening.nl/");
 
         testPortaalPage = new TestPortaalPage(driver);
-
     }
-
     @After
     public void tearDown() {
         tearDownDriver();
@@ -40,7 +40,9 @@ public class GbaTests extends Helper {
 
     @Test
     public void uploadBRPClienten() {
-        testPortaalPage.kiesBestandBrpButton.sendKeys("C:\\git\\playground-project-selenium\\src\\test\\resources\\gba\\ClientenTestset.csv");
+        File f = new File("src/test/resources/ClientenTestset.csv");
+        System.out.println("Resource path: " + f.getAbsolutePath());
+        testPortaalPage.kiesBestandBrpButton.sendKeys(f.getAbsolutePath());
         testPortaalPage.uploadBrpButton.click();
         WebElement popup = testPortaalPage.feedbackPanelParagraafTekst;
         assertTrue(popup.isDisplayed());

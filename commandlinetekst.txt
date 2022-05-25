@@ -1,1 +1,0 @@
-java -cp target/playground-project-selenium-1.0-SNAPSHOT-fat-tests.jar org.junit.runner.JUnitCore com.example.playgroundprojectselenium.MainTestSuite
