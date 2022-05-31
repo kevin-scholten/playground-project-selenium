@@ -7,15 +7,20 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.server.ClassPathResource;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Path;
 import java.util.concurrent.TimeUnit;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
 public class GbaTests extends Helper {
-    private WebDriver driver;
+    private RemoteWebDriver driver;
     private TestPortaalPage testPortaalPage;
 
     @Before
@@ -27,7 +32,7 @@ public class GbaTests extends Helper {
         }
         driver = getDriver();
         driver.manage().window().maximize();
-
+        driver.setFileDetector(new LocalFileDetector());
         // Maak time-out na 10 seconden..
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://testit-testportaal.test.landelijkescreening.nl/");
@@ -41,20 +46,20 @@ public class GbaTests extends Helper {
 
     @Test
     public void uploadBRPClienten() {
-        // Haal pad van clienten test set op
-        File f = new File(System.getProperty("user.dir") + File.separator + "resources" + File.separator + "ClientenTestset.csv");
-        LocalFileDetector detector = new LocalFileDetector();
-        File f2 = detector.getLocalFile(f.getAbsolutePath());
-        System.out.println("Resource path: " + f2.getAbsolutePath());
-
-        // Selecteer Clienten Test set
-        testPortaalPage.kiesBestandBrpButton.sendKeys(f2.getAbsolutePath());
+        testPortaalPage.kiesBestandBrpButton.sendKeys(getPathForResource("ClientenTestset.csv"));
         testPortaalPage.uploadBrpButton.click();
 
-        // Controleer of popup positief is
         WebElement popup = testPortaalPage.feedbackPanelParagraafTekst;
         assertTrue(popup.isDisplayed());
-        String tekstInPopup = testPortaalPage.feedbackPanelParagraafTekst.getText();
-        assertEquals("Uploaden van file was succesvol", tekstInPopup);
+        assertEquals("Uploaden van file was succesvol", popup.getText());
+    }
+
+    public String getPathForResource(String resourceName) {
+        if(System.getenv("IS_IN_DOCKER") != null) {
+            return "/resources/" + resourceName;
+        } else {
+            return new File("src/test/resources/").getAbsolutePath()
+                    +"/" + resourceName;
+        }
     }
 }

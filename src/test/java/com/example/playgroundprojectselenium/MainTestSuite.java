@@ -7,7 +7,7 @@ import com.googlecode.junittoolbox.SuiteClasses;
 import com.googlecode.junittoolbox.WildcardPatternSuite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({MainPageTests.class, GbaTests.class})
+@Suite.SuiteClasses({GbaTests.class})
 public class MainTestSuite {
 
 }

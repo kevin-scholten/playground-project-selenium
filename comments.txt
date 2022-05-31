@@ -1,0 +1,5 @@
+Lokale file path:
+String path = new File("src/test/resources/").getAbsolutePath()
+                +"/"+ fileName;
+
+Docker file path:

@@ -18,10 +18,10 @@ services:
   uitests:
     build: .
     container_name: uitests
+    environment:
+      - IS_IN_DOCKER=true
     ports:
       - "4447:4447"
     depends_on:
       - seleniumhub
       - chrome
-    volumes:
-      - .:/tests
