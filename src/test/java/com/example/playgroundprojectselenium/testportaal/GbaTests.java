@@ -20,7 +20,6 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
 public class GbaTests extends Helper {
-    private RemoteWebDriver driver;
     private TestPortaalPage testPortaalPage;
 
     @Before
@@ -30,7 +29,7 @@ public class GbaTests extends Helper {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        driver = getDriver();
+        RemoteWebDriver driver = getDriver();
         driver.manage().window().maximize();
         driver.setFileDetector(new LocalFileDetector());
         // Maak time-out na 10 seconden..

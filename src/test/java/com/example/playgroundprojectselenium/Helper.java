@@ -31,9 +31,7 @@ public class Helper {
     }
 
     public boolean isInDocker() {
-        if(System.getenv("IS_IN_DOCKER") != null)
-            return true;
-        else return false;
+        return System.getenv("IS_IN_DOCKER") != null;
     }
 
     public String getRemoteUrl() {
