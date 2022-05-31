@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -39,5 +40,14 @@ public class Helper {
         if(isInDocker())
             return "http://seleniumhub:4444/wd/hub";
         else return "http://localhost:4444/wd/hub";
+    }
+
+    public String getPathForResource(String resourceName) {
+        if(System.getenv("IS_IN_DOCKER") != null) {
+            return "/resources/" + resourceName;
+        } else {
+            return new File("src/test/resources/").getAbsolutePath()
+                    +"/" + resourceName;
+        }
     }
 }

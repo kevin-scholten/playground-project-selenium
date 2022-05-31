@@ -53,13 +53,4 @@ public class GbaTests extends Helper {
         assertTrue(popup.isDisplayed());
         assertEquals("Uploaden van file was succesvol", popup.getText());
     }
-
-    public String getPathForResource(String resourceName) {
-        if(System.getenv("IS_IN_DOCKER") != null) {
-            return "/resources/" + resourceName;
-        } else {
-            return new File("src/test/resources/").getAbsolutePath()
-                    +"/" + resourceName;
-        }
-    }
 }
