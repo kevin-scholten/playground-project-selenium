@@ -44,7 +44,7 @@ public class GbaTests extends Helper {
 
     @Test
     public void uploadBRPClienten() {
-        testPortaalPage.kiesBestandBrpButton.sendKeys(getPathForResource("ClientenTestset.csv"));
+        testPortaalPage.kiesBestandBrpButton.sendKeys(getPathForResource("/gba/ClientenTestset.csv"));
         testPortaalPage.uploadBrpButton.click();
 
         WebElement popup = testPortaalPage.feedbackPanelParagraafTekst;
