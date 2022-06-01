@@ -59,7 +59,7 @@ public class GbaTests extends Helper {
     }
 
     @Test
-    public void herschrijfNullBericht() {
+    public void herschrijfEnUploadNullBericht() {
         String nullBerichtTemplate = getStringFromFile("/gba/null-bericht-template.txt");
         String replaced = nullBerichtTemplate.replaceAll("900001030", "kevin12345").replaceAll("1000000070", "Akevin12345");
         try {
