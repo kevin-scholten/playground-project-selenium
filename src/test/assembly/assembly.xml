@@ -21,7 +21,6 @@
             <outputDirectory>/</outputDirectory>
             <includes>
                 <include>**/*.class</include>
-                <include>*</include>
             </includes>
             <useDefaultExcludes>false</useDefaultExcludes>
         </fileSet>

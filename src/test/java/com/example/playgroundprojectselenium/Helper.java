@@ -6,8 +6,11 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Helper {
     protected static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
@@ -40,12 +43,20 @@ public class Helper {
         else return "http://localhost:4444/wd/hub";
     }
 
-    public String getPathForResource(String resourceName) {
+    public String getPathForResource(String resourceRelativePath) {
         if(System.getenv("IS_IN_DOCKER") != null) {
-            return "/resources/" + resourceName;
+            return "/resources/" + resourceRelativePath;
         } else {
             return new File("src/test/resources/").getAbsolutePath()
-                    +"/" + resourceName;
+                    +"/" + resourceRelativePath;
+        }
+    }
+
+    public String getStringFromFile(String resourceRelativePath) {
+        try {
+            return Files.readString(Paths.get(getPathForResource(resourceRelativePath)));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
