@@ -1,9 +1,0 @@
-Lokale file path:
-String path = new File("src/test/resources/").getAbsolutePath()
-                +"/"+ fileName;
-
-Docker file path:
-'/resources/' + fileName
-
-voeg toe in Dockerfile (om te kopiéren naar container):
-COPY src/test/resources /resources
