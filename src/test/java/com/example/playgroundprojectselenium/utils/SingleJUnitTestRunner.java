@@ -12,9 +12,9 @@ public class SingleJUnitTestRunner {
 
         Result result = new JUnitCore().run(request);
         if(result.getFailureCount()==0) {
-            System.out.println("De test '"+classAndMethods[0]+"' is geslaagd :) Totaal: "+result.getRunCount()+" Gefaald: "+result.getFailureCount()+" Overgeslagen: "+result.getIgnoreCount());
+            System.out.println("De test '"+classAndMethods[1]+"' is geslaagd :) Totaal: "+result.getRunCount()+" Gefaald: "+result.getFailureCount()+" Overgeslagen: "+result.getIgnoreCount());
         } else {
-            System.out.println("De test '"+classAndMethods[0]+"' is gefaald :( Totaal: "+result.getRunCount()+" Gefaald: "+result.getFailureCount()+" Overgeslagen: "+result.getIgnoreCount());
+            System.out.println("De test '"+classAndMethods[1]+"' is gefaald :( Totaal: "+result.getRunCount()+" Gefaald: "+result.getFailureCount()+" Overgeslagen: "+result.getIgnoreCount());
             for(int i = 0; i < result.getFailures().size(); i++) {
                 result.getFailures().get(i).getException().printStackTrace();
             }
