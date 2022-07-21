@@ -1,11 +1,12 @@
-package com.example.playgroundprojectselenium.testportaal;
+package playground.testportaal;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import playground.Scherm;
 
-public class TestPortaalPage {
+public class TestPortaalPage extends Scherm {
     @FindBy(css = "input#gbaFile")
     public WebElement kiesBestandBrpButton;
 
@@ -17,5 +18,10 @@ public class TestPortaalPage {
 
     public TestPortaalPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+    }
+
+    @Override
+    protected void init() {
+
     }
 }
